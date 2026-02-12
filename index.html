@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الـ 500 ألف في 6 أشهر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-red: #e11d48; /* الأحمر الأساسي */
+            --dark-red: #9f1239;
+            --bg-color: #ffffff;
+            --text-main: #1f2937;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            /* Fade-in للـ Body أول ما يفتح */
+            animation: bodyFadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes bodyFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* نظام الأنميشن المتطور (داخل وخارج) */
+        .reveal {
+            opacity: 0;
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* الحركة من اليمين */
+        .reveal-right { transform: translateX(80px); }
+        /* الحركة من اليسار */
+        .reveal-left { transform: translateX(-80px); }
+        /* الحركة من الأسفل */
+        .reveal-up { transform: translateY(50px); }
+
+        /* حالة الظهور */
+        .reveal-active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0, 0);
+        }
+
+        .btn-red {
+            background-color: var(--primary-red);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+        }
+
+        .btn-red:hover {
+            background-color: var(--dark-red);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px -10px rgba(225, 29, 72, 0.4);
+        }
+
+        .custom-section { padding-top: 80px; padding-bottom: 80px; }
+        .red-gradient-bg {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-lg bg-white/90 border-b border-red-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="font-black text-xl text-red-600">دليل الـ 500 ألف</h1>
+            <a href="#offer" class="px-6 py-2 font-bold text-sm rounded-lg btn-red">ابدأ الآن</a>
+        </div>
+    </nav>
+
+    <header class="relative px-6 custom-section pt-32 overflow-hidden red-gradient-bg">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12 reveal reveal-up">
+            <div class="text-right">
+                <span class="inline-block px-4 py-1 mb-4 text-xs font-bold bg-red-100 text-red-600 rounded-full">أسرار النجاح الرقمي 2026</span>
+                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight text-gray-900">
+                    كيف تحقق أول <span class="text-red-600">500 ألف</span> أوقية خلال 6 أشهر؟
+                </h1>
+                <p class="text-lg mb-8 text-gray-600 leading-relaxed">دليل عملي ومنهجي للربح من هاتفك والإنترنت فقط. اكتشف النظام البسيط الذي سيغير واقعك المالي.</p>
+                <div class="flex gap-4">
+                    <a href="#offer" class="inline-block px-10 py-4 text-lg font-bold rounded-xl shadow-lg btn-red">احصل على دليلك الآن!</a>
+                </div>
+            </div>
+            <div class="relative reveal reveal-left">
+                <div class="absolute -inset-4 bg-red-500/10 rounded-full blur-3xl"></div>
+                <img src="images/1.webp" alt="Hero" class="rounded-3xl shadow-2xl w-full relative z-10">
+            </div>
+        </div>
+    </header>
+
+    <section class="px-6 custom-section bg-white overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 text-gray-900 reveal reveal-up">هل أنت مرهق من البحث عن فرصة حقيقية للربح؟</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 reveal reveal-right">
+                    <img src="images/2.webp" class="rounded-2xl shadow-xl">
+                </div>
+                <div class="w-full md:w-1/2 text-right reveal reveal-left">
+                    <p class="text-lg mb-6 text-gray-600">في عالم اليوم المليء بالوعود الوهمية، قد تشعر بالإحباط والضياع. تبحث عن طريقة صادقة دون الحاجة لخبرات معقدة.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 font-medium">
+                            <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-red-600">✕</div>
+                            <span>الشعور باليأس من كثرة الوعود الكاذبة.</span>
+                        </li>
+                        <li class="flex items-center gap-3 font-medium">
+                            <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-red-600">✕</div>
+                            <span>عدم وجود خطة واضحة ومبسطة للبدء.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-6 custom-section bg-gray-50">
+        <div class="max-w-6xl mx-auto space-y-32">
+            <div class="flex flex-col md:flex-row items-center gap-16 reveal reveal-right">
+                <div class="w-full md:w-1/2">
+                    <div class="p-4 bg-white rounded-3xl shadow-sm border border-red-100">
+                        <img src="images/3.webp" class="rounded-2xl w-full">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-right">
+                    <h3 class="text-3xl font-bold mb-6 text-red-600">النظام البسيط: كيف يعمل؟</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">نحن نركز على استراتيجيات مجربة وخطوات واضحة تبدأ من الصفر وصولاً إلى بناء تدفق دخل محتمل. لا تعقيدات، فقط إرشادات مباشرة.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row-reverse items-center gap-16 reveal reveal-left">
+                <div class="w-full md:w-1/2">
+                    <div class="p-4 bg-white rounded-3xl shadow-sm border border-red-100">
+                        <img src="images/3.webp" class="rounded-2xl w-full">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-right">
+                    <h3 class="text-3xl font-bold mb-6 text-red-600">الالتزام هو مفتاح النتائج</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">النجاح في أي مجال يتطلب الانضباط. سنوضح لك كيف تحافظ على حماسك وكيف تتعامل مع التحديات اليومية بذكاء.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offer" class="px-6 custom-section">
+        <div class="max-w-4xl mx-auto text-center reveal reveal-up">
+            <div class="bg-gray-900 text-white p-12 rounded-[40px] shadow-2xl relative overflow-hidden border-4 border-red-600">
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-black mb-6">اغتنم الفرصة الآن!</h2>
+                    <p class="text-gray-400 mb-8 max-w-xl mx-auto">طريقة الدفع: بنكيلي. رقم الدفع: <span class="text-red-500 font-bold">27375732</span>. أرسل لقطة شاشة للواتساب لاستلام نسختك فوراً.</p>
+                    <div class="mb-10">
+                        <span class="text-6xl font-black text-red-500">119 أوقية</span>
+                    </div>
+                    <button class="w-full md:w-auto px-16 py-5 text-xl font-black rounded-2xl btn-red">احصل على دليلك الآن!</button>
+                    <p class="mt-6 text-sm text-gray-500">التوصيل فوري بعد إتمام الدفع</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-400 border-t border-gray-100">
+        <p>© 2026 دليل الـ 500 ألف في 6 أشهر. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // الـ Observer هنا بيخلي العناصر تظهر وتختفي بناءً على السكرول
+        const observerOptions = {
+            threshold: 0.15 // العنصر يظهر لما 15% منه يدخل الشاشة
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                } else {
+                    // السطر ده هو اللي بيخلي الحاجة تختفي وأنت طالع لفوق (لو مش عايزها تختفي امسحه)
+                    entry.target.classList.remove('reveal-active');
+                }
+            });
+        }, observerOptions);
+
+        // تشغيل الـ Observer على كل العناصر اللي واخدة كلاس reveal
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
