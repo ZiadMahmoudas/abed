@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل الـ 500,000</title>
+    <title>دليل الـ 500,000 | الصفحة الرئيسية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             --bg-site: #fdfdfd;
         }
 
+        /* --- تأثير دخول الصفحة --- */
         body {
             font-family: 'Cairo', sans-serif;
             margin: 0;
@@ -23,11 +24,10 @@
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
             color: var(--dark-blue);
+            overflow-x: hidden;
         }
-
         body.loaded { opacity: 1; }
 
-        /* تعديل الحاوية لتناسب الديسكتوب والموبايل */
         .main-wrapper {
             width: 100%;
             margin: 0 auto;
@@ -35,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* الهيدر */
+        /* --- الهيدر --- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -48,10 +48,8 @@
             backdrop-filter: blur(5px);
             z-index: 100;
         }
-
         .header-text b { font-size: 18px; display: block; }
         .header-text span { color: var(--primary-red); font-size: 14px; font-weight: bold; }
-
         .btn-top {
             background: var(--primary-red);
             color: white;
@@ -65,7 +63,7 @@
         }
         .btn-top:hover { transform: scale(1.05); }
 
-        /* تنسيق الأقسام العام */
+        /* --- الأقسام --- */
         section { 
             padding: 60px 5%; 
             text-align: center; 
@@ -87,14 +85,7 @@
 
         h1 { font-size: 42px; line-height: 1.2; margin-bottom: 25px; }
         h1 span { color: var(--primary-red); }
-
         p { color: var(--text-gray); line-height: 1.8; font-size: 18px; }
-
-        .hero-image-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto;
-        }
 
         .image-box { 
             width: 100%; 
@@ -117,44 +108,47 @@
             margin: 30px 0;
             transition: all 0.3s;
         }
-        .cta-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(229, 45, 39, 0.4); }
 
-        /* شبكة المميزات للديسكتوب */
+        /* --- شبكة المميزات --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 40px;
         }
-
         .feature-item {
             background: #fff;
             border: 1px solid #f0f0f0;
-            border-bottom: 4px solid var(--primary-red); /* تغيير الخط ليكون سفلي في الديسكتوب */
+            border-bottom: 4px solid var(--primary-red);
             padding: 30px;
             border-radius: 15px;
             text-align: right;
             box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-            opacity: 0;
-            transform: translateY(30px); /* تغيير الحركة لتكون من الأسفل للأعلى */
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .feature-item.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .feature-item h3 { margin: 0 0 12px 0; color: var(--primary-red); font-size: 20px; }
-        .feature-item p { margin: 0; font-size: 16px; color: var(--text-gray); }
 
-        /* الفوتر */
-        .footer-section {
-            background: #f9f9f9;
-            padding: 80px 5%;
-            text-align: center;
+        /* --- الترتيب الاحترافي للـ Observer --- */
+        .observe-hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .move-up { transform: translateY(40px); }
+        .move-right { transform: translateX(50px); }
+        .zoom-in { transform: scale(0.95); }
+        .observe-appear {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0) scale(1);
         }
 
+        /* تأخير التتابع (Stagger) */
+        .feature-item:nth-child(1) { transition-delay: 0.1s; }
+        .feature-item:nth-child(2) { transition-delay: 0.2s; }
+        .feature-item:nth-child(3) { transition-delay: 0.3s; }
+        .feature-item:nth-child(4) { transition-delay: 0.4s; }
+
+        .footer-section { background: #f9f9f9; padding: 80px 5%; text-align: center; }
         .next-page-box {
             background: var(--primary-red);
             color: white;
@@ -166,18 +160,10 @@
             align-items: center;
             gap: 15px;
             cursor: pointer;
-            transition: background 0.3s;
         }
-        .next-page-box:hover { background: #c4231d; }
 
-        .copyright { font-size: 14px; color: #999; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
-
-        /* شاشات الموبايل (Media Queries) */
         @media (max-width: 768px) {
             h1 { font-size: 28px; }
-            section { padding: 40px 20px; }
-            .cta-main { width: 100%; font-size: 18px; }
-            .header-text b { font-size: 14px; }
             .features-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -190,89 +176,78 @@
             <b>دليل الـ 500,000 في 6 أشهر</b>
             <span>تواصل معنا عبر الواتساب: 27375732</span>
         </div>
-<button class="btn-top" onclick="window.location.href='page1.html'">الخطوة التالية 🎁</button>
+        <button class="btn-top" onclick="window.location.href='page1.html'">الخطوة التالية 🎁</button>
     </header>
 
     <section>
-        <div class="badge">⚡ منتج رقمي مثبوت وعملي</div>
-        <h1>حقق أول <span>500.000 أوقية</span> قديمة خلال 6 أشهر باستخدام هاتفك فقط!</h1>
-        <p>دليل عملي ومنهجي للربح من هاتفك والإنترنت فقط. اكتشف النظام البسيط الذي سيغير واقعك المالي تماماً ويبدأ معك من الصفر.</p>
+        <div class="badge observe-hidden move-up">⚡ منتج رقمي مثبوت وعملي</div>
+        <h1 class="observe-hidden move-up">حقق أول <span>500.000 أوقية</span> قديمة خلال 6 أشهر باستخدام هاتفك فقط!</h1>
+        <p class="observe-hidden move-up">دليل عملي ومنهجي للربح من هاتفك والإنترنت فقط. اكتشف النظام البسيط الذي سيغير واقعك المالي تماماً.</p>
         
-        <button class="cta-main">🎯 احصل على دليلك الآن!</button>
+        <button class="cta-main observe-hidden move-up" onclick="window.location.href='page1.html'">🎯 احصل على دليلك الآن!</button>
         
-        <div class="hero-image-container">
+        <div class="hero-image-container observe-hidden zoom-in">
             <img src="images/1.webp" alt="واجهة الدليل" class="image-box">
         </div>
     </section>
 
     <section style="background-color: #fafafa; max-width: 100%;">
         <div style="max-width: 1000px; margin: 0 auto;">
-            <h2 style="font-size: 32px; margin-bottom: 15px;">هل أنت مرهق من البحث عن فرصة حقيقية؟</h2>
-            <p>لا تقلق، أنت لست وحدك! الكثيرون يقعون في فخ الوعود الكاذبة. نحن نقدم لك الحقيقة والخطوات التي تعمل فعلاً.</p>
+            <h2 class="observe-hidden move-up" style="font-size: 32px; margin-bottom: 15px;">هل أنت مرهق من البحث عن فرصة حقيقية؟</h2>
             
             <div class="features-grid">
-                <div class="feature-item">
+                <div class="feature-item observe-hidden move-right">
                     <h3>📋 نظام عملي مبسط</h3>
-                    <p>خطوات واضحة ومباشرة مصممة للمبتدئين يمكنك البدء بتطبيقها فوراً دون أي تعقيدات تقنية.</p>
+                    <p>خطوات واضحة ومباشرة مصممة للمبتدئين يمكنك البدء بتطبيقها فوراً.</p>
                 </div>
-
-                <div class="feature-item">
+                <div class="feature-item observe-hidden move-right">
                     <h3>📱 استغلال هاتفك فقط</h3>
-                    <p>تعلم كيف تحول هاتفك الذي بين يديك الآن من وسيلة لتضييع الوقت إلى ماكينة لإنتاج الدخل.</p>
+                    <p>تعلم كيف تحول هاتفك من وسيلة لتضييع الوقت إلى ماكينة لإنتاج الدخل.</p>
                 </div>
-
-                <div class="feature-item">
+                <div class="feature-item observe-hidden move-right">
                     <h3>✨ توافق تام مع الشريعة</h3>
-                    <p>كل الاستراتيجيات المطروحة حلال ومباركة وموثقة شرعياً لضمان بركة الرزق في حياتك.</p>
+                    <p>كل الاستراتيجيات المطروحة حلال ومباركة وموثقة شرعياً.</p>
                 </div>
-            <div class="feature-item" >
-                <h3>🧠 بناء عقلية النجاح المالي</h3>
-                <p>تنمية الالتزام والمثابرة، وفهم قوانين المال والربح من الإنترنت لتضمن استمرارية نجاحك وتحقيق أهدافك.</p>
-            </div>
+                <div class="feature-item observe-hidden move-right">
+                    <h3>🧠 بناء عقلية النجاح</h3>
+                    <p>تنمية الالتزام والمثابرة لتضمن استمرارية نجاحك.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section>
-        <h2 style="font-size: 32px;">كيف يعمل هذا النظام؟</h2>
-        <p>نحن لا نقدم وعوداً خيالية، بل منهجاً واقعياً يركز على بناء مهارات حقيقية في السوق الرقمي الحالي.</p>
-        
-     
-    </section>
-
     <div class="footer-section">
-        <p style="font-weight: bold; margin-bottom: 30px;">هل أنت مستعد لتغيير واقعك المالي الآن؟</p>
-   <div class="next-page-box" onclick="window.location.href='page1.html'">
-    <span>الانتقال إلى الخطوة التالية</span>
-    <span>➜</span>
-</div>
+        <div class="next-page-box observe-hidden move-up" onclick="window.location.href='page1.html'">
+            <span>الانتقال إلى الخطوة التالية</span>
+            <span>➜</span>
+        </div>
         <div class="copyright">
-            © 2026 دليل الـ 500 ألف في 6 أشهر. جميع الحقوق محفوظة.
-            <br> 
+            © 2026 دليل الـ 500 ألف في 6 أشهر. جميع الحقوق محفوظة. <br> 
             <small>الصفحة 1 من 3</small>
         </div>
     </div>
 </div>
 
 <script>
-    // تفعيل الـ Observer للعناصر لتظهر بحركة انسيابية عند التمرير
+document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
+                entry.target.classList.add('observe-appear');
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('.feature-item').forEach(item => {
-        observer.observe(item);
-    });
+    document.querySelectorAll('.observe-hidden').forEach(el => observer.observe(el));
+});
 </script>
+
 <script>
 
 (function() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اغتنم الفرصة - عرض محدود</title>
+    <title>اغتنم الفرصة - الصفحة الأخيرة</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
             100% { border-color: var(--fuchsia); box-shadow: 0 0 5px var(--fuchsia); }
         }
 
-        /* أنيميشن وميض النص (يحمرّ ويطفي) */
+        /* أنيميشن وميض النص */
         @keyframes text-danger {
             0% { color: var(--fuchsia); }
             50% { color: var(--pure-red); transform: scale(1.02); }
@@ -34,6 +34,7 @@
             background-color: var(--bg-body);
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
+            overflow-x: hidden;
         }
         body.loaded { opacity: 1; }
 
@@ -65,9 +66,28 @@
         .main-img {
             width: 100%; max-width: 550px;
             border-radius: 15px; margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* البورد الواحد المجمع (Main Offer Box) */
+        /* --- إعدادات الـ Observer المتقدم --- */
+        .observe-hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .move-up { transform: translateY(40px); }
+        .move-right { transform: translateX(50px); }
+        .zoom-in { transform: scale(0.95); }
+        
+        .observe-appear {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0) scale(1);
+        }
+
+        /* البورد المجمع */
         .offer-board {
             border: 3px solid var(--fuchsia);
             border-radius: 20px;
@@ -75,10 +95,7 @@
             margin: 20px auto;
             max-width: 500px;
             background: #fff;
-            animation: border-pulse 2s infinite; /* وميض البورد بالكامل */
-            opacity: 0; /* للـ Observer */
-            transform: translateY(40px);
-            transition: all 0.9s ease-out;
+            animation: border-pulse 2s infinite;
         }
 
         .urgent-tag {
@@ -90,59 +107,17 @@
             display: block;
         }
 
-        /* تنسيق السعر داخل البورد */
-        .price-section {
-            border-bottom: 2px dashed #eee;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
-
+        .price-section { border-bottom: 2px dashed #eee; padding-bottom: 20px; margin-bottom: 20px; }
         .old-price { font-size: 22px; color: #aaa; text-decoration: line-through; }
-        
-        .current-price-card {
-            background: #fffafa;
-            border: 2px solid var(--fuchsia);
-            border-radius: 15px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-
-        .price-label { font-size: 16px; font-weight: bold; color: #444; }
+        .current-price-card { background: #fffafa; border: 2px solid var(--fuchsia); border-radius: 15px; padding: 15px; margin: 15px 0; }
         .price-val { font-size: 55px; font-weight: 900; color: var(--fuchsia); line-height: 1; }
         .save-txt { color: #d00000; font-weight: 900; font-size: 19px; }
 
-        /* تنسيق الدفع داخل نفس البورد */
-        .payment-section {
-            background: #f9f9f9;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
+        .payment-section { background: #f9f9f9; border-radius: 12px; padding: 15px; margin-bottom: 20px; }
+        .bankily-id { background: #fff; font-size: 32px; font-weight: 900; padding: 10px; display: block; border-radius: 8px; border: 1px solid #ddd; margin-top: 5px; }
 
-        .bankily-id {
-            background: #fff;
-            font-size: 32px;
-            font-weight: 900;
-            padding: 10px;
-            display: block;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-top: 5px;
-        }
+        .note-yellow { background: #fff9c4; border-right: 6px solid #fbc02d; padding: 15px; border-radius: 8px; text-align: right; font-weight: bold; font-size: 15px; line-height: 1.6; }
 
-        /* الملاحظة الصفراء داخل البورد */
-        .note-yellow {
-            background: #fff9c4;
-            border-right: 6px solid #fbc02d;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: right;
-            font-weight: bold;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* زر الواتساب */
         .cta-whatsapp {
             background-color: var(--fuchsia);
             color: white;
@@ -159,8 +134,10 @@
         }
         .cta-whatsapp:hover { transform: scale(1.02); background-color: var(--pure-red); }
 
-        /* كلاس الظهور */
-        .visible { opacity: 1 !important; transform: translate(0) !important; }
+        /* تتابع ظهور العناصر داخل البورد */
+        .price-section.observe-appear { transition-delay: 0.1s; }
+        .payment-section.observe-appear { transition-delay: 0.3s; }
+        .note-yellow.observe-appear { transition-delay: 0.5s; }
 
         .footer-text { font-size: 12px; color: #bbb; margin-top: 50px; padding-bottom: 20px; }
 
@@ -182,12 +159,12 @@
     <section>
         <img src="images/3.webp" alt="العرض" class="main-img">
 
-        <div class="offer-board observe-me">
+        <div class="offer-board observe-hidden move-up">
             <span class="urgent-tag">⚠️ آخر 10 نسخ فقط متبقية - أسرع وحقق فرصتك!</span>
             
             <h2 style="margin: 0; font-weight: 900; font-size: 24px;">اغتنم الفرصة الذهبية الآن!</h2>
 
-            <div class="price-section">
+            <div class="price-section observe-hidden move-right">
                 <span class="old-price">1700 أوقية جديدة</span>
                 <div class="current-price-card">
                     <div class="price-label">السعر الحالي لفترة محدودة وهو:</div>
@@ -196,22 +173,22 @@
                 <div class="save-txt">وفر 1300 أوقية جديدة الآن! ✅</div>
             </div>
 
-            <div class="payment-section">
+            <div class="payment-section observe-hidden move-right">
                 <div style="color: var(--fuchsia); font-weight: 900;">طريقة الدفع: بنكيلي</div>
                 <div style="font-size: 14px; margin-top: 5px;">رقم الدفع:</div>
                 <span class="bankily-id">27375732</span>
             </div>
 
-            <div class="note-yellow">
+            <div class="note-yellow observe-hidden move-right">
                 ⚠️ مهم: بعد ماترسل المبلغ اعمل لنا لقطة شاشة وارسلها لنا علي الواتساب لنرسل لك نسخة الكتاب مباشرة.
             </div>
         </div>
 
-        <a href="https://wa.me/27375732" class="cta-whatsapp">
+        <a href="https://wa.me/27375732" class="cta-whatsapp observe-hidden move-up">
             تواصل معنا علي الواتساب الآن ✓
         </a>
 
-        <div style="color: var(--pure-red); font-weight: 900; animation: text-danger 2s infinite;">
+        <div class="observe-hidden move-up" style="color: var(--pure-red); font-weight: 900; animation: text-danger 2s infinite;">
             التوصيل فوري وبشكل تلقائي بعد اتمام الدفع 🚀
         </div>
 
@@ -224,16 +201,24 @@
 </div>
 
 <script>
-    // نظام الـ Observer للظهور عند السكرول
-    const observer = new IntersectionObserver((entries) => {
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('observe-appear');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    document.querySelectorAll('.observe-me').forEach(el => observer.observe(el));
+    // مراقبة العناصر التي تحتوي على كلاس observe-hidden فقط
+    document.querySelectorAll('.observe-hidden').forEach(el => observer.observe(el));
+});
 </script>
 <script>
 
