@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #e52d27;
+            --primary-red: #ff0000;
             --text-gray: #666;
             --dark-blue: #0a192f;
             --bg-site: #fdfdfd;
@@ -84,7 +84,7 @@
         }
 
         h1 { font-size: 42px; line-height: 1.2; margin-bottom: 25px; }
-        h1 span { color: var(--primary-red); }
+        h1 span { color: var(--primary-red); font-weight: 800; }
         p { color: var(--text-gray); line-height: 1.8; font-size: 18px; }
 
         .image-box { 
@@ -181,13 +181,13 @@
 
     <section>
         <div class="badge observe-hidden move-up">⚡ منتج رقمي مثبوت وعملي</div>
-        <h1 class="observe-hidden move-up">حقق أول <span>500.000 أوقية</span> قديمة خلال 6 أشهر باستخدام هاتفك فقط!</h1>
+        <h1 class="observe-hidden move-up">حقق أول <span>500.000 </span>اوقيه قديمة خلال 6 أشهر باستخدام هاتفك فقط!</h1>
         <p class="observe-hidden move-up">دليل عملي ومنهجي للربح من هاتفك والإنترنت فقط. اكتشف النظام البسيط الذي سيغير واقعك المالي تماماً.</p>
         
         <button class="cta-main observe-hidden move-up" onclick="window.location.href='page1.html'">🎯 احصل على دليلك الآن!</button>
         
         <div class="hero-image-container observe-hidden zoom-in">
-            <img src="images/1.webp" alt="واجهة الدليل" class="image-box">
+            <img src="images/4.webp" alt="واجهة الدليل" class="image-box">
         </div>
     </section>
 
@@ -205,8 +205,8 @@
                     <p>تعلم كيف تحول هاتفك من وسيلة لتضييع الوقت إلى ماكينة لإنتاج الدخل.</p>
                 </div>
                 <div class="feature-item observe-hidden move-right">
-                    <h3>✨ توافق تام مع الشريعة</h3>
-                    <p>كل الاستراتيجيات المطروحة حلال ومباركة وموثقة شرعياً.</p>
+                    <h3>✨ توجهات متوافقة مع الشريعة</h3>
+                    <p>كل الاستراتيجيات المطروحة حلال ومباركة.</p>
                 </div>
                 <div class="feature-item observe-hidden move-right">
                     <h3>🧠 بناء عقلية النجاح</h3>
@@ -247,52 +247,51 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.observe-hidden').forEach(el => observer.observe(el));
 });
 </script>
+ <script>
 
-<script>
+// (function() {
+//     'use strict';
+//     document.addEventListener('contextmenu', function(e) {
+//         e.preventDefault();
+//     });
 
-(function() {
-    'use strict';
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
+//     document.addEventListener('keydown', function(e) {
+//         if (e.key === 'F12' || e.keyCode === 123) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || e.keyCode === 123) {
-            e.preventDefault();
-            return false;
-        }
+//         if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-            e.preventDefault();
-            return false;
-        }
+//    if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
+//         e.preventDefault();
+//         return false;
+//     }
+//     });
 
-   if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
-        e.preventDefault();
-        return false;
-    }
-    });
-
-    const devToolsCheck = function() {
-        if (window.console && window.console.time) {
-                (function() {
-                    (function() {
-                        debugger;
-                    }).apply(this, ['alwaysOn']);
-                })();
+//     const devToolsCheck = function() {
+//         if (window.console && window.console.time) {
+//                 (function() {
+//                     (function() {
+//                         debugger;
+//                     }).apply(this, ['alwaysOn']);
+//                 })();
          
-        }
-    };
+//         }
+//     };
     
 
-    setInterval(devToolsCheck, 1000);
+//     setInterval(devToolsCheck, 1000);
 
 
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-    });
+//     document.addEventListener('copy', function(e) {
+//         e.preventDefault();
+//     });
 
-})();
-</script>
+// })();
+// </script>
 </body>
 </html>
