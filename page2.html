@@ -107,11 +107,13 @@
             font-weight: 900;
             font-size: 18px;
             animation: text-danger 1.5s infinite;
-            margin-bottom: 15px;
+            margin-bottom: 6px;
             display: block;
         }
-
-        .price-section { border-bottom: 2px dashed #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        h2,h1,h3,h4,h5,h6{
+            margin: 0;
+        }
+        .price-section { border-bottom: 2px dashed #eee; padding-bottom: 20px; margin-bottom: -21px; }
         .old-price { font-size: 22px; color: #aaa; text-decoration: line-through; }
         .current-price-card { background: #fffafa; border: 2px solid var(--fuchsia); border-radius: 15px; padding: 15px; margin: 15px 0; }
         .price-val { font-size: 55px; font-weight: 900; color: var(--fuchsia); line-height: 1; }
@@ -153,6 +155,68 @@
         
           .header-text b { font-size: 18px; display: block;color: var(--primary-red); }
         .header-text span { color: var(--dark-blue); font-size: 14px; font-weight: bold; }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: row-reverse;
+            gap: 20px;
+            background: var(--dark); 
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 var(--pure-red);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
+
+        .number {
+            font-size: 3rem;
+            font-weight: bold;
+            line-height: 1;
+            background: -webkit-linear-gradient(var(--pure-red) var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow:  0px 0px var(--fuchsia);
+        }
+
+        .label {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+    
+        .separator {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: -10px; 
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 600px) {
+            .countdown-container {
+                gap: 10px;
+                padding: 20px;
+            }
+            .number {
+                font-size: 2rem;
+            }
+            .time-box {
+                min-width: 60px;
+            }
+        }
     </style>
 </head>
 <body onload="document.body.classList.add('loaded')">
@@ -169,17 +233,16 @@
         <img src="images/3.webp" alt="العرض" class="main-img">
 
         <div class="offer-board observe-hidden move-up">
-            <span class="urgent-tag">⚠️ آخر 10 نسخ فقط متبقية - اسرع قبل نفاذ الكمية!</span>
             
             <h2 style="margin: 0; font-weight: 900; font-size: 24px;">اغتنم الفرصة الذهبية الآن!</h2>
 
             <div class="price-section observe-hidden move-right">
-                <span class="old-price">1700 أوقية جديدة</span>
+                <span class="old-price">1700 اوقية جديدة</span>
                 <div class="current-price-card">
                     <div class="price-label">السعر الحالي لفترة محدودة</div>
-                    <div class="price-val">420 <small style="font-size: 20px;">أوقيه جديدة</small> </div>
+                    <div class="price-val">420 <small style="font-size: 20px;">اوقية جديدة</small> </div>
                 </div>
-                <div class="save-txt">وفر 1300 أوقية جديدة الآن </div>
+                <div class="save-txt">وفر 1300 اوقية جديدة الآن </div>
             </div>
 
             <div class="payment-section observe-hidden move-right">
@@ -192,7 +255,31 @@
                 ⚠️ مهم: بعد ماترسل المبلغ اعمل لنا لقطة شاشة وارسلها لنا علي الواتساب لنرسل لك نسخة الكتاب مباشرة.
             </div>
         </div>
+        <div class="urgent-tag">
+         آخر عشر نسخ فقط ! سارع قبل انفاذ الكمية
+        </div>
+        <h2>ينتهي العرض خلال:</h2>
 
+    <div class="countdown-container">
+        <div class="time-box">
+            <span class="number" id="hours">00</span>
+            <span class="label">ساعة</span>
+        </div>
+
+        <span class="separator">:</span>
+
+        <div class="time-box">
+            <span class="number" id="minutes">00</span>
+            <span class="label">دقيقة</span>
+        </div>
+
+        <span class="separator">:</span>
+
+        <div class="time-box">
+            <span class="number" id="seconds">00</span>
+            <span class="label">ثانية</span>
+        </div>
+    </div>
         <a href="https://wa.me/+22227375732" class="cta-whatsapp observe-hidden move-up">
             تواصل معنا علي الواتساب الآن ✓
         </a>
@@ -225,55 +312,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // مراقبة العناصر التي تحتوي على كلاس observe-hidden فقط
     document.querySelectorAll('.observe-hidden').forEach(el => observer.observe(el));
+        setInterval(updateCountdown, 1000);
+
+        updateCountdown();
 });
+function updateCountdown() {
+            const now = new Date();
+            
+            const tomorrow = new Date();
+            tomorrow.setHours(24, 0, 0, 0); 
+            
+            const diff = tomorrow - now;
+
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+    
 </script>
 <script>
 
-// (function() {
-//     'use strict';
-//     document.addEventListener('contextmenu', function(e) {
-//         e.preventDefault();
-//     });
+(function() {
+    'use strict';
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
 
-//     document.addEventListener('keydown', function(e) {
-//         if (e.key === 'F12' || e.keyCode === 123) {
-//             e.preventDefault();
-//             return false;
-//         }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
 
-//         if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-//             e.preventDefault();
-//             return false;
-//         }
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+            e.preventDefault();
+            return false;
+        }
 
-//    if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
-//         e.preventDefault();
-//         return false;
-//     }
-//     });
+   if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
+        e.preventDefault();
+        return false;
+    }
+    });
 
-//     const devToolsCheck = function() {
-//         if (window.console && window.console.time) {
-//                 (function() {
-//                     (function() {
-//                         debugger;
-//                     }).apply(this, ['alwaysOn']);
-//                 })();
+    const devToolsCheck = function() {
+        if (window.console && window.console.time) {
+                (function() {
+                    (function() {
+                        debugger;
+                    }).apply(this, ['alwaysOn']);
+                })();
          
-//         }
-//     };
+        }
+    };
     
 
-//     setInterval(devToolsCheck, 1000);
+    setInterval(devToolsCheck, 1000);
 
 
-//     document.addEventListener('copy', function(e) {
-//         e.preventDefault();
-//     });
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+    });
 
-// })();
+})();
 </script>
 </body>
 </html>
