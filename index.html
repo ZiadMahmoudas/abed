@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل الـ 500,000 | الصفحة الرئيسية</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>دليل الـ 500,000 | الصفحة الرئيسية</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap"
+            rel="stylesheet">
+        <style>
         :root {
             --primary-red: #ff0000;
             --text-gray: #666;
@@ -48,8 +50,8 @@
             backdrop-filter: blur(5px);
             z-index: 100;
         }
-        .header-text b { font-size: 18px; display: block; }
-        .header-text span { color: var(--primary-red); font-size: 14px; font-weight: bold; }
+        .header-text b { font-size: 18px; display: block;color: var(--primary-red); }
+        .header-text span { color: var(--dark-blue); font-size: 14px; font-weight: bold; }
         .btn-top {
             background: var(--primary-red);
             color: white;
@@ -89,6 +91,7 @@
 
         .image-box { 
             width: 100%; 
+            height: 300px;
             border-radius: 20px; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
@@ -125,7 +128,12 @@
             text-align: right;
             box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
-        .feature-item h3 { margin: 0 0 12px 0; color: var(--primary-red); font-size: 20px; }
+        .feature-item h3 { 
+            margin: 0 0 12px 0; 
+            color: var(--primary-red); 
+                font-size: 25px;
+    font-weight: 900;
+             }
 
         /* --- الترتيب الاحترافي للـ Observer --- */
         .observe-hidden {
@@ -167,68 +175,83 @@
             .features-grid { grid-template-columns: 1fr; }
         }
     </style>
-</head>
-<body onload="document.body.classList.add('loaded')">
+    </head>
+    <body onload="document.body.classList.add('loaded')">
 
-<div class="main-wrapper">
-    <header class="header">
-        <div class="header-text">
-            <b>دليل الـ 500,000 في 6 أشهر</b>
-            <span>تواصل معنا عبر الواتساب: 27375732</span>
-        </div>
-        <button class="btn-top" onclick="window.location.href='page1.html'">الخطوة التالية 🎁</button>
-    </header>
+        <div class="main-wrapper">
+            <header class="header">
+                <div class="header-text">
+                    <b>أسرار النجاح الرقمي</b>
+                    <span>تواصل معنا عبر الواتساب: 27375732</span>
+                </div>
+                <button class="btn-top"
+                    onclick="window.location.href='page1.html'">الخطوة التالية
+                    🎁</button>
+            </header>
 
-    <section>
-        <div class="badge observe-hidden move-up">⚡ منتج رقمي مثبوت وعملي</div>
-        <h1 class="observe-hidden move-up">حقق أول <span>500.000 </span>اوقيه قديمة خلال 6 أشهر باستخدام هاتفك فقط!</h1>
-        <p class="observe-hidden move-up">دليل عملي ومنهجي للربح من هاتفك والإنترنت فقط. اكتشف النظام البسيط الذي سيغير واقعك المالي تماماً.</p>
-        
-        <button class="cta-main observe-hidden move-up" onclick="window.location.href='page1.html'">🎯 احصل على دليلك الآن!</button>
-        
-        <div class="hero-image-container observe-hidden zoom-in">
-            <img src="images/4.webp" alt="واجهة الدليل" class="image-box">
-        </div>
-    </section>
+            <section>
+                <div class="badge observe-hidden move-up">⚡ منتج رقمي مثبوت
+                    وعملي</div>
+                <h1 class="observe-hidden move-up">حقق أول <span>500.000
+                    </span>أوقيه قديمة خلال 180يوما باستخدام هاتفك فقط!</h1>
+                <p class="observe-hidden move-up">دليل عملي ومنهجي للربح من
+                    هاتفك والإنترنت فقط. اكتشف النظام البسيط الذي سيغير واقعك
+                    المالي تماماً.</p>
 
-    <section style="background-color: #fafafa; max-width: 100%;">
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <h2 class="observe-hidden move-up" style="font-size: 32px; margin-bottom: 15px;">هل أنت مرهق من البحث عن فرصة حقيقية؟</h2>
-            
-            <div class="features-grid">
-                <div class="feature-item observe-hidden move-right">
-                    <h3>📋 نظام عملي مبسط</h3>
-                    <p>خطوات واضحة ومباشرة مصممة للمبتدئين يمكنك البدء بتطبيقها فوراً.</p>
+                <button class="cta-main observe-hidden move-up"
+                    onclick="window.location.href='page1.html'">🎯 احصل على
+                    دليلك الآن!</button>
+
+                <div class="hero-image-container observe-hidden zoom-in">
+                    <img src="images/phone.webp" alt="واجهة الدليل"
+                        class="image-box">
                 </div>
-                <div class="feature-item observe-hidden move-right">
-                    <h3>📱 استغلال هاتفك فقط</h3>
-                    <p>تعلم كيف تحول هاتفك من وسيلة لتضييع الوقت إلى ماكينة لإنتاج الدخل.</p>
+            </section>
+
+            <section style="background-color: #fafafa; max-width: 100%;">
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    <h2 class="observe-hidden move-up"
+                        style="font-size: 32px; margin-bottom: 15px;">هل أنت
+                        مرهق من البحث عن فرصة حقيقية؟</h2>
+
+                    <div class="features-grid">
+                        <div class="feature-item observe-hidden move-right">
+                            <h3>📋 نظام عملي مبسط</h3>
+                            <p>خطوات واضحة ومباشرة مصممة للمبتدئين يمكنك البدء
+                                بتطبيقها فوراً.</p>
+                        </div>
+                        <div class="feature-item observe-hidden move-right">
+                            <h3>📱 استغلال هاتفك فقط</h3>
+                            <p>تعلم كيف تحول هاتفك من وسيلة لتضييع الوقت إلى
+                                ماكينة لإنتاج الدخل.</p>
+                        </div>
+                        <div class="feature-item observe-hidden move-right">
+                            <h3>✨ توجهات متوافقة مع الشريعة</h3>
+                            <p>كل الاستراتيجيات المطروحة حلال ومباركة.</p>
+                        </div>
+                        <div class="feature-item observe-hidden move-right">
+                            <h3>🧠 بناء عقلية النجاح</h3>
+                            <p>تنمية الالتزام والمثابرة لتضمن استمرارية
+                                نجاحك.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-item observe-hidden move-right">
-                    <h3>✨ توجهات متوافقة مع الشريعة</h3>
-                    <p>كل الاستراتيجيات المطروحة حلال ومباركة.</p>
+            </section>
+
+            <div class="footer-section">
+                <div class="next-page-box observe-hidden move-up"
+                    onclick="window.location.href='page1.html'">
+                    <span>الانتقال إلى الخطوة التالية</span>
+                    <span>➜</span>
                 </div>
-                <div class="feature-item observe-hidden move-right">
-                    <h3>🧠 بناء عقلية النجاح</h3>
-                    <p>تنمية الالتزام والمثابرة لتضمن استمرارية نجاحك.</p>
+                <div class="copyright">
+                    © 2026 دليل الـ 500 ألف في 6 أشهر. جميع الحقوق محفوظة. <br>
+                    <small>الصفحة 1 من 3</small>
                 </div>
             </div>
         </div>
-    </section>
 
-    <div class="footer-section">
-        <div class="next-page-box observe-hidden move-up" onclick="window.location.href='page1.html'">
-            <span>الانتقال إلى الخطوة التالية</span>
-            <span>➜</span>
-        </div>
-        <div class="copyright">
-            © 2026 دليل الـ 500 ألف في 6 أشهر. جميع الحقوق محفوظة. <br> 
-            <small>الصفحة 1 من 3</small>
-        </div>
-    </div>
-</div>
-
-<script>
+        <script>
 document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         threshold: 0.15,
@@ -247,51 +270,51 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.observe-hidden').forEach(el => observer.observe(el));
 });
 </script>
- <script>
+        <script>
 
-(function() {
-    'use strict';
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
+// (function() {
+//     'use strict';
+//     document.addEventListener('contextmenu', function(e) {
+//         e.preventDefault();
+//     });
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || e.keyCode === 123) {
-            e.preventDefault();
-            return false;
-        }
+//     document.addEventListener('keydown', function(e) {
+//         if (e.key === 'F12' || e.keyCode === 123) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-            e.preventDefault();
-            return false;
-        }
+//         if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-   if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
-        e.preventDefault();
-        return false;
-    }
-    });
+//    if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
+//         e.preventDefault();
+//         return false;
+//     }
+//     });
 
-    const devToolsCheck = function() {
-        if (window.console && window.console.time) {
-                (function() {
-                    (function() {
-                        debugger;
-                    }).apply(this, ['alwaysOn']);
-                })();
+//     const devToolsCheck = function() {
+//         if (window.console && window.console.time) {
+//                 (function() {
+//                     (function() {
+//                         debugger;
+//                     }).apply(this, ['alwaysOn']);
+//                 })();
          
-        }
-    };
+//         }
+//     };
     
 
-    setInterval(devToolsCheck, 1000);
+//     setInterval(devToolsCheck, 1000);
 
 
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-    });
+//     document.addEventListener('copy', function(e) {
+//         e.preventDefault();
+//     });
 
-})();
+// })();
  </script>
-</body>
+    </body>
 </html>

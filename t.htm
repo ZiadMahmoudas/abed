@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziad Mahmoud | Creative Full Stack</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0b1121;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* 3D Canvas Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        section, footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glass Nav */
+        .glass-nav {
+            background: rgba(11, 17, 33, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Nav Container Logic */
+        .nav-center-container {
+            position: relative;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           
+        }
+
+        /* Both wrappers sit on top of each other */
+        .nav-links-wrapper, .contact-bar-wrapper {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        /* Contact Items Styling */
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 0 5px;
+            color: #fff;
+            /* Hidden by default via GSAP later, but handled here for safety */
+            opacity: 0; 
+        }
+        .contact-pill a:nth-child(1){
+            width: 99px;
+        }
+    
+        .glow-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .glow-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform 0.6s ease-out;
+        }
+        .glow-btn:hover::after {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <div id="canvas-container"></div>
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="flex-shrink-0 cursor-pointer logo-item z-20 opacity-0 translate-y-[-20px]">
+                    <span class="text-2xl font-bold tracking-tighter text-white">
+                        ZIAD<span class="text-blue-500">.DEV</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex nav-center-container">
+                    
+                    <div class="nav-links-wrapper" id="navLinksWrapper">
+                        <a href="#home" class="nav-item text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors opacity-0">Home</a>
+                        <a href="#about" class="nav-item text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors opacity-0">About</a>
+                        <a href="#skills" class="nav-item text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors opacity-0">Skills</a>
+                        <a href="#projects" class="nav-item text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors opacity-0">Projects</a>
+                    </div>
+
+                    <div class="contact-bar-wrapper" id="contactBarWrapper">
+                        <div class="contact-pill translate-y-[-50px]">
+                            <i class="fas fa-phone text-blue-400"></i> +201100133486
+                        </div>
+                        <div class="contact-pill translate-y-[-50px]">
+                            <i class="fas fa-envelope text-purple-400"></i> ziadbobo78@gmail.com
+                        </div>
+                        <div class="contact-pill bg-blue-600/20 border-blue-500/50 cursor-pointer hover:bg-blue-600 hover:border-blue-600 transition-all translate-y-[-50px]">
+                            <a href="https://linkedin.com/in/ziad-mahmoud-mohammed" target="_blank">LinkedIn Profile</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4 z-20">
+                    <button id="magicContactBtn" class="glow-btn bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-full text-sm font-medium border border-slate-600 transition-all flex items-center gap-2 group opacity-0 translate-y-[-20px]">
+                        <span id="btnText">Connect</span>
+                        <i id="btnIcon" class="fas fa-arrow-down  transition-transform"></i>
+                    </button>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="text-center px-4 max-w-4xl mx-auto z-10">
+            <p class="hero-el text-blue-400 font-semibold tracking-wide mb-4">HELLO, I'M</p>
+            <h1 class="hero-el text-6xl md:text-8xl font-extrabold text-white mb-6 leading-tight">
+                Ziad Mahmoud <br>
+                <span class="text-gradient">Full Stack</span>
+            </h1>
+            <p class="hero-el text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto backdrop-blur-sm bg-slate-900/30 p-4 rounded-xl border border-white/5">
+                Building scalable and secure web applications with <strong class="text-blue-400">Angular 20</strong> & <strong class="text-purple-400">ASP.NET Core</strong>.
+                Designing the future of web.
+            </p>
+            
+            <div class="hero-el flex flex-col md:flex-row gap-5 justify-center items-center">
+                <a href="cv.pdf" download class="group relative px-8 py-3 bg-blue-600 text-white font-bold rounded-full overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all hover:scale-105">
+                    <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></span>
+                    <span class="relative flex items-center gap-2">
+                        Download CV <i class="fas fa-download group-hover:animate-bounce"></i>
+                    </span>
+                </a>
+                
+                <a href="https://github.com/ZiadMahmoudas" target="_blank" class="px-8 py-3 border border-slate-600 text-gray-300 font-medium rounded-full hover:border-white hover:text-white hover:bg-white/5 transition-all flex items-center gap-2">
+                    <i class="fab fa-github text-xl"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="section-title text-4xl font-bold text-center mb-16 text-white">Technical <span class="text-blue-500">Core</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="skill-card bg-slate-900/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all hover:-translate-y-2 shadow-2xl">
+                    <i class="fas fa-laptop-code text-5xl text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Frontend</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i> Angular 20 (Expert)</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i> TypeScript / RxJS</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i> Tailwind & GSAP</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i> Three.js Integration</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-slate-900/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all hover:-translate-y-2 shadow-2xl">
+                    <i class="fas fa-database text-5xl text-purple-500 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Backend</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-purple-500 mr-2"></i> ASP.NET Core</li>
+                        <li><i class="fas fa-check text-purple-500 mr-2"></i> Entity Framework</li>
+                        <li><i class="fas fa-check text-purple-500 mr-2"></i> SQL Server / T-SQL</li>
+                        <li><i class="fas fa-check text-purple-500 mr-2"></i> JWT & OAuth Sec</li>
+                    </ul>
+                </div>
+                 <div class="skill-card bg-slate-900/80 backdrop-blur-md p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all hover:-translate-y-2 shadow-2xl">
+                    <i class="fas fa-cogs text-5xl text-green-500 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Architecture</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Clean Architecture</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> RESTful APIs</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Git Flow / CI/CD</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Unit Testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="section-title text-4xl font-bold text-center mb-16 text-white">Featured <span class="text-purple-500">Work</span></h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="group relative rounded-2xl overflow-hidden border border-slate-700 bg-slate-800/50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"></div>
+                    <div class="h-64 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                        <i class="fas fa-shopping-bag text-8xl text-blue-500/20 group-hover:scale-125 transition-transform duration-700"></i>
+                    </div>
+                    <div class="relative z-20 p-8">
+                        <h3 class="text-3xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">E-Commerce System</h3>
+                        <p class="text-gray-400 mb-6">Full-scale platform with secure checkout, inventory management, and real-time dashboarding using .NET Core and Angular.</p>
+                        <div class="flex gap-3 mb-6">
+                            <span class="px-3 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30">Angular</span>
+                            <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30">.NET Core</span>
+                            <span class="px-3 py-1 text-xs bg-green-500/20 text-green-300 rounded-full border border-green-500/30">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-2xl overflow-hidden border border-slate-700 bg-slate-800/50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"></div>
+                    <div class="h-64 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                        <i class="fas fa-sticky-note text-8xl text-yellow-500/20 group-hover:scale-125 transition-transform duration-700"></i>
+                    </div>
+                    <div class="relative z-20 p-8">
+                        <h3 class="text-3xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Smart Notes App</h3>
+                        <p class="text-gray-400 mb-6">Secure note-taking with token-based authentication (LocalStorage), complex CRUD, and responsive UI design.</p>
+                        <div class="flex gap-3 mb-6">
+                            <span class="px-3 py-1 text-xs bg-yellow-500/20 text-yellow-300 rounded-full border border-yellow-500/30">Auth</span>
+                            <span class="px-3 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30">Frontend</span>
+                            <span class="px-3 py-1 text-xs bg-gray-500/20 text-gray-300 rounded-full border border-gray-500/30">API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900/80 backdrop-blur border-t border-slate-800 py-12 text-center">
+        <p class="text-gray-500">© 2026 Ziad Mahmoud. Crafted with <span class="text-red-500">♥</span> using Three.js & GSAP.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // --- 1. THREE.JS BACKGROUND (Unchanged) ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const geometry1 = new THREE.IcosahedronGeometry(1.5, 0);
+        const material1 = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.15 });
+        const shape1 = new THREE.Mesh(geometry1, material1);
+
+        const geometry2 = new THREE.TorusGeometry(1, 0.3, 16, 100);
+        const material2 = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, wireframe: true, transparent: true, opacity: 0.1 });
+        const shape2 = new THREE.Mesh(geometry2, material2);
+
+        shape1.position.set(3, 1, -2);
+        shape2.position.set(-3, -1, -3);
+        scene.add(shape1);
+        scene.add(shape2);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 200;
+        const posArray = new Float32Array(particlesCount * 3);
+        for(let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 15; }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0xffffff, transparent: true, opacity: 0.4 });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        let mouseX = 0; let mouseY = 0;
+        document.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX / window.innerWidth - 0.5;
+            mouseY = event.clientY / window.innerHeight - 0.5;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            shape1.rotation.x += 0.002; shape1.rotation.y += 0.002;
+            shape2.rotation.x -= 0.003; shape2.rotation.y -= 0.001;
+            particlesMesh.rotation.y = -mouseX * 0.5;
+            particlesMesh.rotation.x = -mouseY * 0.5;
+            shape1.position.x += (mouseX * 0.5 - shape1.position.x + 3) * 0.05;
+            shape1.position.y += (-mouseY * 0.5 - shape1.position.y + 1) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+
+        // --- 2. GSAP ADVANCED NAVBAR (STAGGERED MAGIC) ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Elements
+        const magicBtn = document.getElementById('magicContactBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        
+        // Groups
+        const navItems = document.querySelectorAll('.nav-item');
+        const contactPills = document.querySelectorAll('.contact-pill');
+
+        let isContactMode = false;
+
+        // --- A. INITIAL PAGE LOAD ANIMATION (Render one by one) ---
+        const initTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        
+        initTl
+            .to('.logo-item', { y: 0, opacity: 1, duration: 1 }) // Logo down
+            .to(navItems, { 
+                y: 0, 
+                opacity: 1, 
+                stagger: 0.15, // Links appear one by one
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }, "-=0.5")
+            .to(magicBtn, { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.5")
+            .from(".hero-el", { y: 30, opacity: 0, duration: 1, stagger: 0.2 }, "-=0.5");
+
+
+        // --- B. THE SWAP LOGIC (STAGGERED) ---
+        magicBtn.addEventListener('click', () => {
+            const tl = gsap.timeline();
+
+            if (!isContactMode) {
+                // SWITCH TO CONTACT
+                // 1. Links Fly Up One by One
+                tl.to(navItems, { 
+                    y: -40, 
+                    opacity: 0, 
+                    stagger: 0.08, // Fast stagger out
+                    duration: 0.4, 
+                    ease: "power2.in",
+                    pointerEvents: "none" // Prevent clicks while hidden
+                })
+                // 2. Contact Items Drop Down One by One
+                .to(contactPills, { 
+                    y: 0, 
+                    opacity: 1, 
+                    stagger: 0.1, // Smooth stagger in
+                    duration: 0.5, 
+                    ease: "back.out(1.7)",
+                    pointerEvents: "auto"
+                }, "-=0.1"); // Start slightly before previous ends
+                
+                // Button Visuals
+                btnText.innerText = "Close";
+                gsap.to(btnIcon, { rotation: 180, duration: 0.3 }); // Rotate arrow
+                btnIcon.classList.remove('fa-arrow-down');
+                btnIcon.classList.add('fa-times');
+                magicBtn.classList.add('bg-red-600', 'border-red-500');
+                magicBtn.classList.remove('bg-slate-800');
+
+                isContactMode = true;
+
+            } else {
+                // SWITCH BACK TO LINKS
+                // 1. Contact Items Fly Up One by One
+                tl.to(contactPills, { 
+                    y: -40, 
+                    opacity: 0, 
+                    stagger: 0.08, 
+                    duration: 0.4, 
+                    ease: "power2.in",
+                    pointerEvents: "none"
+                })
+                // 2. Links Drop Down One by One
+                .to(navItems, { 
+                    y: 0, 
+                    opacity: 1, 
+                    stagger: 0.1, 
+                    duration: 0.5, 
+                    ease: "back.out(1.7)",
+                    pointerEvents: "auto"
+                }, "-=0.1");
+
+                // Revert Button
+                btnText.innerText = "Connect";
+                gsap.to(btnIcon, { rotation: 0, duration: 0.3 });
+                btnIcon.classList.remove('fa-times');
+                btnIcon.classList.add('fa-arrow-down');
+                magicBtn.classList.remove('bg-red-600', 'border-red-500');
+                magicBtn.classList.add('bg-slate-800');
+
+                isContactMode = false;
+            }
+        });
+
+        // --- C. SCROLL ANIMATIONS (Keep them) ---
+        gsap.utils.toArray('.skill-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: "top 85%" },
+                y: 50, opacity: 0, duration: 0.8, delay: i * 0.1
+            });
+        });
+
+    </script>
+</body>
+</html>

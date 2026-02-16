@@ -12,6 +12,8 @@
             --fuchsia: #ff0055;
             --pure-red: #ff0000;
             --bg-body: #fdfdfd;
+            --dark: #1a1a1a;
+            --primary-red: #e52d27;
         }
 
         /* أنيميشن الوميض الأحمر للأطراف */
@@ -48,6 +50,7 @@
 
         .header {
             display: flex;
+            flex-direction: row-reverse;
             justify-content: space-between;
             align-items: center;
             padding: 15px 25px;
@@ -64,6 +67,7 @@
         section { padding: 20px 5%; text-align: center; }
 
         .main-img {
+            height: 355px;
             width: 100%; max-width: 550px;
             border-radius: 15px; margin-bottom: 20px;
             display: block;
@@ -146,6 +150,9 @@
             .offer-board { margin: 10px; padding: 15px; }
             .price-val { font-size: 45px; }
         }
+        
+          .header-text b { font-size: 18px; display: block;color: var(--primary-red); }
+        .header-text span { color: var(--dark-blue); font-size: 14px; font-weight: bold; }
     </style>
 </head>
 <body onload="document.body.classList.add('loaded')">
@@ -153,8 +160,10 @@
 <div class="wrapper">
     <header class="header">
         <a href="page1.html" class="btn-back">← السابق</a>
-        <div style="font-weight: 900; font-size: 14px;">دليل الـ 500 ألف في 6 أشهر 📱</div>
-    </header>
+    <div class="header-text">
+                    <b>أسرار النجاح الرقمي</b>
+                    <span>تواصل معنا عبر الواتساب: 27375732</span>
+                </div>    </header>
 
     <section>
         <img src="images/3.webp" alt="العرض" class="main-img">
@@ -222,49 +231,49 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 
-(function() {
-    'use strict';
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
+// (function() {
+//     'use strict';
+//     document.addEventListener('contextmenu', function(e) {
+//         e.preventDefault();
+//     });
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || e.keyCode === 123) {
-            e.preventDefault();
-            return false;
-        }
+//     document.addEventListener('keydown', function(e) {
+//         if (e.key === 'F12' || e.keyCode === 123) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-            e.preventDefault();
-            return false;
-        }
+//         if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-   if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
-        e.preventDefault();
-        return false;
-    }
-    });
+//    if (e.ctrlKey && (e.key === 'u' || e.keyCode === 85)) {
+//         e.preventDefault();
+//         return false;
+//     }
+//     });
 
-    const devToolsCheck = function() {
-        if (window.console && window.console.time) {
-                (function() {
-                    (function() {
-                        debugger;
-                    }).apply(this, ['alwaysOn']);
-                })();
+//     const devToolsCheck = function() {
+//         if (window.console && window.console.time) {
+//                 (function() {
+//                     (function() {
+//                         debugger;
+//                     }).apply(this, ['alwaysOn']);
+//                 })();
          
-        }
-    };
+//         }
+//     };
     
 
-    setInterval(devToolsCheck, 1000);
+//     setInterval(devToolsCheck, 1000);
 
 
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-    });
+//     document.addEventListener('copy', function(e) {
+//         e.preventDefault();
+//     });
 
-})();
+// })();
 </script>
 </body>
 </html>
