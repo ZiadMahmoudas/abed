@@ -113,11 +113,15 @@
             border: 4px solid white;
         }
         .image-card img { 
-            height: 219px;
+           
             width: 100%;
              display: block; 
              transition: transform 0.5s ease; }
-
+            @media(min-width:576px){
+                .image-card img{
+                     height: auto;
+                }
+            }
         .content-box { background: var(--primary-light); border-radius: 30px; margin: 20px 5%; padding: 40px; }
         .content-box h2 { font-weight: 900; font-size: 28px; color: var(--primary-red); margin-bottom: 25px; }
 

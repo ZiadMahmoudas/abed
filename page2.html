@@ -67,14 +67,18 @@
         section { padding: 20px 5%; text-align: center; }
 
         .main-img {
-            height: 224px;
+          height: 224px;
             width: 100%; max-width: 550px;
             border-radius: 15px; margin-bottom: 20px;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
-
+        @media(min-width:576px){
+            .main-img{
+                  height: auto;
+            }
+        }
         /* --- إعدادات الـ Observer المتقدم --- */
         .observe-hidden {
             opacity: 0;
